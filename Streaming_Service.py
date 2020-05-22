@@ -3,6 +3,9 @@ class Streaming_Service:
         self.activated = activated
 
     def checkStreamingService(self):
-        pass
+        if self.activated == True:
+            return True
+        else:
+            return False
 
 
