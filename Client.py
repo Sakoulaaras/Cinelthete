@@ -10,6 +10,27 @@ class Client:
         Client.class_counter += 1
     
     movies_watched = []
+    
+    def getUsername(self):
+        return self.username
+
+    def getLastname(self):
+        return self.lastname
+
+    def getAge(self):
+        return self.age
+    
+    def getCancelCount(self):
+        return self.cancel_count
+
+    def setCancelCount(self,cancel_count):
+        self.cancel_count = cancel_count
+    
+    def getSeasonTickets(self):
+        return self.season_tickets
+    
+    def setSeasonTickets(self,season_tickets):
+        self.season_tickets = season_tickets
 
     def setCardNumber(self,number):
         self.card_number = number
@@ -24,7 +45,15 @@ class Client:
         pass
     
     def checkStreamingCriteria(self):
-        pass
+        if self.getCancelCount()<5 and self.getSeasonTickets()>10:
+            return True
+        else:
+            if self.getCancelCount()>5 and self.getSeasonTickets()>10:
+                return 'You have too many canceled tickets...more than 5'
+            elif self.getSeasonTickets()<10 and self.getCancelCount()<5:
+                return 'Not enough tickets bought last season..less than 10'
+            else:
+                return 'Too many canceled tickets plus not enough tickets bought'
 
     def checkOnDemandCriteria(self):
         pass
