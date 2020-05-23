@@ -56,7 +56,15 @@ class Client:
                 return 'Too many canceled tickets plus not enough tickets bought'
 
     def checkOnDemandCriteria(self):
-        pass
+        if self.getCancelCount()<5 and self.getSeasonTickets()>10 and self.getTotalTickets()>30:
+            return True
+        else:
+            if self.getCancelCount()>5 and self.getSeasonTickets()>10 and self.getTotalTickets()>30:
+                return 'You have too many canceled tickets...more than 5'
+            elif self.getSeasonTickets()<10 and self.getCancelCount()<5 and self.getTotalTickets()>30:
+                return 'Not enough tickets bought last season..less than 10'
+            elif self.getCancelCount()<5 and self.getSeasonTickets()>10 and self.getTotalTickets()<30:
+                return 'Not enough total tickets bought in our cinemas...less than 30'
 
     def checkHistor(self):
         pass
