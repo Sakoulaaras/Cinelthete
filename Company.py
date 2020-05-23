@@ -1,9 +1,14 @@
 from statistics import stdev
 from Movie import Movie
+from Cinema import Cinema
 class Company:
     def __init__(self):
         self.past_movies = []
         self.similar_found_movies = []
+        self.cinemas = []
+    
+    def getCinemas(self):
+        return self.cinemas
 
     def updateEarnigns(self):
         pass
@@ -57,10 +62,20 @@ class Company:
         pass
 
     def retrieveCinemasTickets(self):
-        pass
+        tickets_for_each_cinema = {}
+        cumulative_tickets = 0
+        for cinema in self.getCinemas():
+            tickets_for_each_cinema[cinema.getId()] = cinema.getTotalTickets()
+            cumulative_tickets += cinema.getTotalTickets()
+        return [tickets_for_each_cinema,cumulative_tickets]
 
     def retrieveCinemasEarnings(self):
-        pass
+        earnings_for_each_cinema = {}
+        cumulative_earnings = 0
+        for cinema in self.getCinemas():
+            earnings_for_each_cinema[cinema.getId()] = cinema.getTotalEarnings()
+            cumulative_earnings += cinema.getTotalEarnings()
+        return [earnings_for_each_cinema,cumulative_earnings]
 
     def calculatePeakHours(self):
         pass
