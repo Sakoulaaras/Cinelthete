@@ -16,20 +16,28 @@ class Streaming_Movies_Container:
         return self.upcoming_streams
 
     def checkLiveStreams(self):
-         if not self.getLiveStreams():
+         if len(self.getLiveStreams())==0:
             return False
         else:
-            return self.getLiveStreams()
+            return True
 
     def retrieveUpcomingStreams(self):
         pass
 
     def retrieveLiveStreams(self):
-        pass
+        if self.checkLiveStreams():
+            return self.getLiveStreams()
+        else:
+            print('No available Live Streams Now')
 
-    def checkWatchingNow(self):
-        pass
-
+    def checkWatchingNow(self,stream):
+        index = self.live_streams.index(stream)
+        if self.live_streams[index].getPeopleWatchingNow()<self.live_streams[index].getMaxPeopleWatching():
+            self.live_streams[index].updatePeopleWatchingNow()
+            return True
+        else:
+            return False
+ 
     def loadStreamingMovie(self):
         pass
 
