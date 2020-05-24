@@ -40,6 +40,12 @@ class Client:
     
     def addWatchedMovie(self,movie):
         self.movies_watched.append(movie)
+    
+    def getDiscount(self):
+        return self.discount
+
+    def setDiscount(self,discount):
+        self.discount = discount
 
     def retriveWatchedMovies(self):
         pass
