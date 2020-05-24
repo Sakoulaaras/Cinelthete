@@ -33,21 +33,29 @@ class Company:
 
     def estimateMovieTickets(self,movie):
         sum = 0
-        count = 0
         sums_for_std = []
         if self.findMovies(movie.getDirector(),movie.getGenre(),movie.getStarring()):
             for movie in self.similar_found_movies:
                 sum += movie.getTickets()
-                count += 1
                 sums_for_std.append(sum)
-            mean = sum/count
+            mean = sum/len(self.similar_found_movies)
             std = stdev(sums_for_std)
             return [mean,std]
         else:
             return 'Not enough past similar movies to make prediction'
 
-    def estimateMovieEarnings(self):
-        pass
+    def estimateMovieEarnings(self,movie):
+        sum = 0
+        sums_for_std = []
+        if self.findMovies(movie.getDirector(),movie.getGenre(),movie.getStarring()):
+            for movie in self.similar_found_movies:
+                sum += movie.getEarnings()
+                sums_for_std.append(sum)
+            mean = sum/len(self.similar_found_movies)
+            std = stdev(sums_for_std)
+            return [mean,std]
+        else:
+            return 'Not enough past similas movies to make prediction'
 
     def retrieveCinemasForForecast(self):
         pass
