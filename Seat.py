@@ -1,6 +1,20 @@
 class Seat:
-    def __init__(self):
-       pass
+    def __init__(self,row,column):
+       self.row = row
+       self.column = column
+       self.taken = False
     
-    def seatReservation(self):
-        pass
+    def getRow(self):
+        return self.row
+    
+    def getColumn(self):
+        return self.column
+    
+    def setTaken(self,piasmeni):
+        self.taken = piasmeni
+    
+    def seatReservation(self,row,column):
+        if self.getRow() == row and self.getColumn() == column:
+            self.setTaken(True)
+        else:
+            print("That seat doesn't exist")
