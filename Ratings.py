@@ -15,8 +15,16 @@ class Ratings:
             else:
                 return False
 
-    def registerRating(self):
-        pass
+    def addClientToLog(self,client):
+        self.ratings_log[client.getId()] = {'Streaming_Movies':{},'Classic_Movies':{},'Mainstream_Movies':{}}
+    
+    def registerRating(self,client,movie,rating):
+        if isinstance(movie,Streaming_Movie):
+            self.ratings_log[client.getId()]['Streaming_Movies'][movie.getTitle()] = rating
+        elif isinstance(movie,Classic_Movie):
+            self.ratings_log[client.getId()]['Classic_Movies'][movie.getTitle()] = rating
+        elif isinstance(movie,Mainstream_Movie):
+            self.ratings_log[client.getId()]['Mainstream_Movies'][movie.getTitle()] = rating
     
     def checkRatedMovies(self):
         total_ratings = len(self.ratings_log[client.getId()]['Streaming_Movies'])+len(self.ratings_log[client.getId()]['Classic_Movies'])+len(self.ratings_log[client.getId()]['Mainstream_Movies'])
