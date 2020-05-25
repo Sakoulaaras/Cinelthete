@@ -11,6 +11,9 @@ class Client:
     
     movies_watched = []
     
+    def getId(self):
+        return self.id
+    
     def getUsername(self):
         return self.username
 
