@@ -85,7 +85,7 @@ class Client:
             elif self.getCancelCount()<5 and self.getSeasonTickets()>10 and self.getTotalTickets()<30:
                 return 'Not enough total tickets bought in our cinemas...less than 30'
 
-    def checkHistor(self):
+    def checkHistory(self):
         if self.getCancelCount()<5:
             return True
         else:
