@@ -28,12 +28,21 @@ class Cinema:
 
     def updateTickets(self,tickets):
         self.total_tickets += tickets
+        
+    def setMaxForecast(self,forecast):
+        self.max_forecast = forecast
+        
+    def setPeakHours(self,hour,people_count):
+        self.peak_hours[hour] = people_count
 
-    def getForecastAvailability(self):
-        pass
+    def getForecastAvailability(self,forecast):
+        if self.getMaxForecast() < forecast:
+            return True
+        else:
+            return False
 
     def getMaxForecast(self):
-        pass
+        return self.max_forecast
 
     def retrieveTickets(self):
         pass
@@ -60,9 +69,13 @@ class Cinema:
             return False
         else:
             return available_screening_halls
-
+    
+    # epistrefei tis ores me to megalitero pli8ow kosmou
     def calculatePeak(self):
-        pass
+        lista = self.getPeakHours()
+        indexes = [i[0] for i in sorted(enumerate(lista), key=lambda x:x[1],reverse=True)]
+        result = [self.peak_hours_wres[index] for index in indexes]
+        return result[0:2]
 
     
 
