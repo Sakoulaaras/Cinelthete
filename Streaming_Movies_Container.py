@@ -1,13 +1,13 @@
 class Streaming_Movies_Container:
     def __init__(self,live_streams,upcoming_streams):
         self.live_streams = live_streams
-        self.upcoming_streams = upcoming_streams
+        self.upcoming_streams = {}
         
     def addLiveStream(self,stream):
         self.live_streams.append(stream)
 
-    def addUpcomingStream(self,stream):
-        self.upcoming_streams.append(stream)
+    def addUpcomingStream(self,stream,meres):
+        self.upcoming_streams[stream] = meres
 
     def getLiveStreams(self):
         return self.live_streams
@@ -22,7 +22,14 @@ class Streaming_Movies_Container:
             return True
 
     def retrieveUpcomingStreams(self):
-        pass
+        anerxomena = list()
+        for stream,value in self.getUpcomingStreams().items():
+            if value<=meres:
+                anerxomena.append(stream)
+        if len(anerxomena)>0:
+            return anerxomena
+        else:
+            print('Den iparxoun anerxomena stream')
 
     def retrieveLiveStreams(self):
         if self.checkLiveStreams():
