@@ -10,6 +10,8 @@ class Cinema:
         Cinema.class_counter += 1
         for i in range(1,num_of_screening_halls+1):
             self.screening_halls.append(Screening_Hall(20,20)) # arxikopoioume oles tis athouses me 20x20 theseis
+        self.peak_hours = [0,0,0,0,0,0,0,0,0] # anoixta 17:00-2:00
+        self.peak_hours_wres = [17,18,19,20,21,22,23,0,1]
 
     def getId(self):
         return self.id
