@@ -58,10 +58,20 @@ class Company:
             return 'Not enough past similas movies to make prediction'
 
     def retrieveCinemasForForecast(self):
-        pass
+        found_cinemas = []
+        for cinema in self.getCinemas():
+            if cinema.getForecastAvailability()==True:
+                found_cinemas.append(cinema)
+        if len(found_cinemas)>0:
+            return found_cinemas
+        else:
+            return False
 
     def calculateMaxForecast(self):
-        pass
+        max_forecasts_for_each_cinema = {}
+        for cinema in self.getCinemas():
+            max_forecasts_for_each_cinema[cinema.getId()] = cinema.getMaxForecast()
+        return max_forecasts_for_each_cinema
 
     def seprateTimeSeriesForecasting(self):
         pass
