@@ -1,5 +1,6 @@
 class Movie_On_Demand:
-    def __init__(self,director,genre,starring):
+    def __init__(self,title,director,genre,starring):
+        self.title = title
         self.director = director
         self.genre = genre
         self.starring = starring
