@@ -1,7 +1,7 @@
 from Movie_On_Demand import Movie_On_Demand
 class Classic_Movie(Movie_On_Demand):
-    def __init__(self,director,genre,starring,year):
-        super(Classic_Movie,self).__init__(director,genre,starring)
+    def __init__(self,title,director,genre,starring,year):
+        super(Classic_Movie,self).__init__(title,director,genre,starring)
         self.year = year
 
     def getYear(self):
