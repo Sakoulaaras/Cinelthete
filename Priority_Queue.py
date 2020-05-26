@@ -1,9 +1,9 @@
 class Priority_Queue:
     def __init__(self):
-        pass
+        self.on_hold = []
 
     def insertToPriorityQueue(self,client):
-        pass
+        self.on_hold.append(client)
 
     def calculateReservationTime(self):
         pass
