@@ -4,6 +4,10 @@ class Movie_On_Demand:
         self.director = director
         self.genre = genre
         self.starring = starring
+        self.mean_rating = 0
+    
+    def getTitle(self):
+        return self.title
 
     def getDirector(self):
         return self.director
@@ -13,3 +17,9 @@ class Movie_On_Demand:
 
     def getStarring(self):
         return self.starring
+
+    def setMeanRating(self,rating):
+        self.mean_rating = rating
+
+    def getMeanRating(self):
+        return self.mean_rating
