@@ -28,10 +28,14 @@ class Classic_Movie(Movie_On_Demand):
     def loadClassicMovie(self):
         pass
 
-    def getClassic(self):
-        pass
-
+    def getClassic(self,title):
+        if self.title == title:
+            return True
+        
     def getClassicByGenre(self,genre):
-        pass
+        if self.getGenre()==genre:
+            return True
+        else:
+            return False
 
     
