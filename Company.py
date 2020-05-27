@@ -6,9 +6,15 @@ class Company:
         self.past_movies = []
         self.similar_found_movies = []
         self.cinemas = []
+        for i in range(1,num_of_cinemas+1):
+            # arxikopoioume olous tous kinimatografous stin patra kai me 10 aithsouses
+            self.cinemas.append(Cinema('Patra',10))
     
     def getCinemas(self):
         return self.cinemas
+    
+    def addCinema(self,cinema):
+        self.cinemas.append(cinema)
 
     def updateEarnigns(self):
         pass
@@ -96,4 +102,14 @@ class Company:
         return [earnings_for_each_cinema,cumulative_earnings]
 
     def calculatePeakHours(self):
-        pass
+        peak_hours = {}
+        cumulative_people = [0,0,0,0,0,0,0,0,0]
+        wres = [17,18,19,20,21,22,23,0,1]
+        peak_hours['seperate'] = {}
+        for cinema in self.getCinemas():
+            peak_hours['seperate'][cinema.getId()] = cinema.calculatePeak()
+            cumulative_people = [a+b for a,b in zip(cumulative_people,cinema.getPeakHours())]
+        indexes = [i[0] for i in sorted(enumerate(cumulative_people), key=lambda x:x[1],reverse=True)]
+        wres_taxinomimenes = [wres[index] for index in indexes]
+        peak_hours['cumulative'] = wres_taxinomimenes[0:2]
+        return peak_hours
