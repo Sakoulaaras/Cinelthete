@@ -16,11 +16,15 @@ class Company:
     def addCinema(self,cinema):
         self.cinemas.append(cinema)
 
-    def updateEarnigns(self):
-        pass
+    def updateEarnigns(self,id,amount):
+        for cinema in self.getCinemas():
+            if cinema.getId() == id:
+                cinema.updateEarnings(amount)
 
-    def updateTickets(self):
-        pass
+    def updateTickets(self,id,tickets):
+        for cinema in self.getCinemas():
+            if cinema.getId() == id:
+                cinema.updateTickets(tickets)
     
     def findMovies(self,director,genre,starring):
         self.similar_found_movies = []
