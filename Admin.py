@@ -3,7 +3,7 @@ class Admin:
         self.username = username
         self.password = password
 
-    def checkStatisticalChoise(self):
+    def checkStatisticalChoise(self,choise):
         if choise == 'Tickets and Earnings':
             return 'Tickets and earnings'
         elif choise == 'Peak Hours':
