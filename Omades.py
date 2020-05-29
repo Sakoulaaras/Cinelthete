@@ -2,6 +2,14 @@ from Streaming_Movie import Streaming_Movie
 from Classic_Movie import Classic_Movie
 from Mainstream_Movie import Mainstream_Movie
 from Recommended_Movie import Recommended_Movie
+
+import pandas as pd
+import matplotlib.pyplot as plt
+import numpy as np
+from scipy.sparse import csr_matrix
+from sklearn.cluster import KMeans
+import helper
+
 class Omades:
     def __init__(self):
         self.best_streaming = []
@@ -37,8 +45,14 @@ class Omades:
     def retrieveRecommendedMovies(self):
         pass
     
+    # gia tis on demand
     def retrieveBestMovies(self):
-        pass
+        best_movies = {}
+        for classic in self.best_on_demand['Classics']:
+            best_movies['Classics'].append(classic)
+        for mainstream in self.best_on_demand['Mainstream']:
+            best_movies['Mainstream'].append(mainstream)
+        return best_movies
     
     def def retrieveRecommendedClassicss(self):
         pass
@@ -47,13 +61,33 @@ class Omades:
         pass
     
     def retrieveBestClassics(self):
-        pass
+        best_classics = []
+        for classic in self.best_on_demand['Classics']:
+            best_classics.append(classic)
+        return best_classics
     
-    def sortStreaming(self): # kaleitai kathe fora pou erxetai ena neo stream
-        pass
+    # kaleitai kathe fora pou erxetai ena neo stream
+    def sortStreaming(self):
+        ratings = []
+        for movie in self.getStreamingMovies():
+            ratings.append(movie.getMeanRating())
+        indexes = [i[0] for i in sorted(enumerate(ratings), key=lambda x:x[1],reverse=True)]
+        result = [self.getStreamingMovies()[index] for index in indexes]
+        self.best_streaming = result[0:10]
+        # return result
     
     def sortClassic(self):
-        pass
+        classic_ratings = []
+        for classic in self.getClassics():
+            classic_ratings.append(classic.getMeanRating())
+        indexes = [i[0] for i in sorted(enumerate(classic_ratings), key=lambda x:x[1],reverse=True)]
+        result = [self.getClassics()[index] for index in indexes]
+        self.best_on_demand['Classics'] = result[0:10]
     
     def sortMainstream(self):
-        pass
+        mainstream_ratings = []
+        for mainstream in self.getMainstream():
+            mainstream_ratings.append(mainstream.getMeanRating())
+        indexes = [i[0] for i in sorted(enumerate(mainstream_ratings), key=lambda x:x[1],reverse=True)]
+        result = [self.getMainstream()[index] for index in indexes]
+        self.best_on_demand['Mainstream'] = result[0:10]
