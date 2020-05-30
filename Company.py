@@ -1,6 +1,11 @@
 from statistics import stdev
 from Movie import Movie
 from Cinema import Cinema
+
+from statsmodels.tsa.arima_model import ARIMA
+from random import random
+import matplotlib.pyplot as plt
+
 class Company:
     def __init__(self):
         self.past_movies = []
@@ -84,10 +89,46 @@ class Company:
         return max_forecasts_for_each_cinema
 
     def seprateTimeSeriesForecasting(self):
-        pass
+        seperate = dict()
+        data_list = list()
+        for cinema in self.getCinemas():
+            data_list.append(cinema.getAttendance())
+        for i in range(len(self.getCinemas())):
+            predictions = list()
+            train, test = data_list[i][0:9*25], data_list[i][9*25:9*30]
+            history = [x for x in train]
+            #fit model
+            for j in range(len(test)):
+                model = ARIMA(history,order=(5,1,0))
+                model_fit = model.fit(disp=False)
+                output = model_fit.forecast()
+                yhat = output[0]
+                predictions.append(yhat)
+                history.append(test[j])
+            plt.plot(test)
+            plt.plot(predictions,color='red')
+            plt.show()
+            seperate[f'cinema_{self.getCinemas()[i].getId()}'] = predictions 
+        return seperate
 
     def cumulativeTimeSeriesForecasting(self):
-        pass
+        predictions = list()
+        sum_data_list = [0 for x in range(1,9*30)]
+        for cinema in self.getCinemas():
+            sum_data_list = [a+b for a,b in zip(sum_data_list,cinema.getAttendance())]
+        train, test = sum_data_list[0:9*25], sum_data_list[9*25:9*30]
+        history = [x for x in train]
+        for i in range(len(test)):
+            model = ARIMA(history, order=(5, 1, 0))
+            model_fit = model.fit(disp=False)
+            output = model_fit.forecast()
+            yhat = output[0]
+            predictions.append(yhat)
+            history.append(test[i])
+        plt.plot(test)
+        plt.plot(predictions,color='red')
+        plt.show()
+        return predictions
 
     def retrieveCinemasTickets(self):
         tickets_for_each_cinema = {}
