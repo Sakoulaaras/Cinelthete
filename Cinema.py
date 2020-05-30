@@ -1,4 +1,5 @@
 from Screening_Hall import Screening_Hall
+from random import random
 class Cinema:
     class_counter = 0
     def __init__(self,city,num_of_screening_halls):
