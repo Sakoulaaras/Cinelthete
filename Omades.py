@@ -40,10 +40,50 @@ class Omades:
         self.sortMainstream()
     
     def Clustering(self):
-        pass
+        movies = pd.read_csv('movies.csv')
+        ratings = pd.read_csv('ratings.csv')
+        ratings_title = pd.merge(ratings, movies[['movieId', 'title']], on='movieId' )
+        # gia logous perfomance tha xrisimopoiisoume mono 1000 tanies apo tis 9000+
+        user_movie_ratings =  pd.pivot_table(ratings_title, index='userId', columns= 'title', values='rating')
+        most_rated_movies_1k = helper.get_most_rated_movies(user_movie_ratings, 1000)
+
+        sparse_ratings = csr_matrix(pd.SparseDataFrame(most_rated_movies_1k).to_coo())
+
+        # 20 clusters
+        predictions = KMeans(n_clusters=20, algorithm='full').fit_predict(sparse_ratings)
+        # max_users = 70
+        # max_movies = 50
+
+        clustered = pd.concat([most_rated_movies_1k.reset_index(), pd.DataFrame({'group':predictions})], axis=1)
+        # helper.draw_movie_clusters(clustered, max_users, max_movies) - petaei error
+        return clustered
     
-    def retrieveRecommendedMovies(self):
-        pass
+    # dialegoume cluster_number kai xristi apo to cluster
+    def retrieveRecommendedMovies(self,cluster_id,user_id):
+        recommended_movies = []
+        clustered = self.Clustering()
+        cluster_number = cluster_id
+        cluster = clustered[clustered.group == cluster_number].drop(['index', 'group'], axis=1)
+
+        # cluster = helper.sort_by_rating_density(cluster, n_movies, n_users)
+        # helper.draw_movies_heatmap(cluster, axis_labels=False)
+
+        user_id = user_id
+
+        # oles oi aksiologiseis tou xristi
+        user_ratings  = cluster.loc[user_id, :]
+
+        # poies tainies den exei aksiologisei? (den sistinoume tainies pou exei aksiologisei)
+        user_unrated_movies =  user_ratings[user_ratings.isnull()]
+
+        # oi aksiologiseis twn tainiwn pou den exei aksiologisei o xristis
+        avg_ratings = pd.concat([user_unrated_movies, cluster.mean()], axis=1, join='inner').loc[:,0]
+
+        recommended = avg_ratings.sort_values(ascending=False)[:20]
+        for title in recommended.index:
+            # afairw tin imerominia apo to title: px The Matrix (1999)
+            recommended_movies.append(Recommended_Movie(title[0:title.find('(')-1]))
+        return recommended_movies
     
     # gia tis on demand
     def retrieveBestMovies(self):
