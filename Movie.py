@@ -25,11 +25,11 @@ class Movie:
     def getEarnings(self):
         return self.total_earnings
 
-    def updateEarnings(self):
-        pass
+    def updateEarnings(self,amount):
+        self.total_earnings += amount
 
-    def updateTickets(self):
-        pass
+    def updateTickets(self,count):
+        self.tickets_count += count
 
     def checkMovie(director,genre,starring):
         factor = 0
