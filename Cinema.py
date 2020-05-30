@@ -12,6 +12,10 @@ class Cinema:
             self.screening_halls.append(Screening_Hall(20,20)) # arxikopoioume oles tis athouses me 20x20 theseis
         self.peak_hours = [0,0,0,0,0,0,0,0,0] # anoixta 17:00-2:00
         self.peak_hours_wres = [17,18,19,20,21,22,23,0,1]
+        self.attendance = [100*random() for x in range(30*9)] # dummy attendace data
+        
+    def getAttendance(self):
+        return self.attendance
 
     def getId(self):
         return self.id
