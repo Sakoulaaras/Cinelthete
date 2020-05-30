@@ -94,11 +94,49 @@ class Omades:
             best_movies['Mainstream'].append(mainstream)
         return best_movies
     
+    # gia logous aplotitas tha theorisoume klasikes tis tainies me xronologia prin to 2000   
     def retrieveRecommendedClassicss(self):
-        pass
+        recommended_classics = []
+        clustered = self.Clustering()
+        cluster_number = cluster_id
+        cluster = clustered[clustered.group == cluster_number].drop(['index', 'group'], axis=1)
+
+        # cluster = helper.sort_by_rating_density(cluster, n_movies, n_users)
+        # helper.draw_movies_heatmap(cluster, axis_labels=False)
+
+        user_id = user_id
+
+        # oles oi aksiologiseis tou xristi
+        user_ratings  = cluster.loc[user_id, :]
+
+        # poies tainies den exei aksiologisei? (den sistinoume tainies pou exei aksiologisei)
+        user_unrated_movies =  user_ratings[user_ratings.isnull()]
+
+        # oi aksiologiseis twn tainiwn pou den exei aksiologisei o xristis
+        avg_ratings = pd.concat([user_unrated_movies, cluster.mean()], axis=1, join='inner').loc[:,0]
+
+        recommended_classics = avg_ratings.sort_values(ascending=False)[:20]
+        for title in recommended_classics.index:
+            # i imerominia einai mesa stin parenthesi px The Godfather (1972)
+            if int(title[title.find('(')+1:len(title)-1])<2000:
+                recommended_classics.append(title[0:title.find('(')-1])
+        return recommended_classics # exei titles twn klasikwn
     
     def retrieveRecommendedGenres(self):
-        pass
+        recommended_genres = []
+        classics_by_genre = []
+        movies = pd.read_csv('movies.csv')
+        ratings = pd.read_csv('ratings.csv')
+        # ipologizw to average rating kathe genre
+        genre_ratings = helper.get_genre_ratings(ratings, movies, ['Romance','Thriller','Horror', 'Sci-Fi','Action','Adventure','Comedy','Fantasy','Drama','Animation'], ['avg_romance_rating', 'avg_thriller_rating','avg_horror_rating','avg_scifi_rating','avg_action_rating','avg_adv_rating','avg_comedy_raring','avg_fantasy_rating','avg_drama_rating','avg_animation_rating'])
+        best_genres = genre_ratings.iloc[user_id].nlargests(3)
+        for genre in best_genres.index:
+            recommended_genres.append(genre) 
+        for classic in self.getClassics():
+            for genre in recommended_genres:
+                if classic.getClassicByGenre(genre)==True:
+                    classics_by_genre.append(classic)
+        return classics_by_genre
     
     def retrieveBestClassics(self):
         best_classics = []
