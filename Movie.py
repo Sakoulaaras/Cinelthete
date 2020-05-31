@@ -1,11 +1,16 @@
 class Movie:
-    def __init__(self,director,genre,starring):
+    def __init__(self,title,director,genre,starring):
+        self.title = title
         self.director = director
         self.genre = genre
         self.starring = starring
         self.total_earnings = 0
         self.tickets_count = 0
         self.description = ''
+        self.release_date = 0 # isws time
+    
+    def getTitle(self):
+        return self.title
     
     def getDirector(self):
         return self.director
@@ -25,11 +30,11 @@ class Movie:
     def getEarnings(self):
         return self.total_earnings
 
-    def updateEarnings(self):
-        pass
+    def updateEarnings(self,amount):
+        self.total_earnings += amount
 
-    def updateTickets(self):
-        pass
+    def updateTickets(self,count):
+        self.tickets_count += count
 
     def checkMovie(director,genre,starring):
         factor = 0
