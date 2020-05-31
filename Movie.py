@@ -7,6 +7,7 @@ class Movie:
         self.total_earnings = 0
         self.tickets_count = 0
         self.description = ''
+        self.release_date = 0 # isws time
     
     def getTitle(self):
         return self.title
