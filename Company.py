@@ -34,7 +34,7 @@ class Company:
     def findMovies(self,director,genre,starring):
         self.similar_found_movies = []
         counter = 0
-        for movie in self.past_movies:
+        for movie in self.getPastMovies():
             if movie.checkMovie(director,genre,starring):
                 counter += 1
                 self.similar_found_movies.append(movie)
@@ -45,6 +45,9 @@ class Company:
     
     def addPastMovie(self,movie):
         self.past_movies.append(movie)
+    
+    def getPastMovies(self):
+        return self.past_movies
 
     def estimateMovieTickets(self,movie):
         sum = 0
