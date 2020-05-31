@@ -26,14 +26,14 @@ class Ratings:
         elif isinstance(movie,Mainstream_Movie):
             self.ratings_log[client.getId()]['Mainstream_Movies'][movie.getTitle()] = rating
     
-    def checkRatedMovies(self):
+    def checkRatedMovies(self,client):
         total_ratings = len(self.ratings_log[client.getId()]['Streaming_Movies'])+len(self.ratings_log[client.getId()]['Classic_Movies'])+len(self.ratings_log[client.getId()]['Mainstream_Movies'])
         if total_ratings>=10:
             return True
         else:
             return False
 
-    def checkRatedClassicMovies(self):
+    def checkRatedClassicMovies(self,client):
         total_ratings = len(self.ratings_log[client.getId()]['Streaming_Movies'])+len(self.ratings_log[client.getId()]['Classic_Movies'])+len(self.ratings_log[client.getId()]['Mainstream_Movies'])
         if len(self.ratings_log[client.getId()]['Classic_Movies'])>=5:
             return True
