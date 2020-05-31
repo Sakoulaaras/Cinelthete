@@ -1,5 +1,6 @@
 class Recommended_Movie:
     def __init__(self,title):
+        self.title = title
         # allazei giati tha epistrefei mono titles o kmeans
 #         self.director = director
 #         self.genre = genre
