@@ -1,7 +1,7 @@
 class Streaming_Movies_Container:
     def __init__(self,live_streams,upcoming_streams):
         self.live_streams = live_streams
-        self.upcoming_streams = {}
+        self.upcoming_streams = {} # {stream1:3,stream2:5} kathe id h title kai se poses meres erxetai
         
     def addLiveStream(self,stream):
         self.live_streams.append(stream)
@@ -21,7 +21,7 @@ class Streaming_Movies_Container:
         else:
             return True
 
-    def retrieveUpcomingStreams(self):
+    def retrieveUpcomingStreams(self,meres):
         anerxomena = list()
         for stream,value in self.getUpcomingStreams().items():
             if value<=meres:
