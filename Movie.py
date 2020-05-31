@@ -1,11 +1,15 @@
 class Movie:
-    def __init__(self,director,genre,starring):
+    def __init__(self,title,director,genre,starring):
+        self.title = title
         self.director = director
         self.genre = genre
         self.starring = starring
         self.total_earnings = 0
         self.tickets_count = 0
         self.description = ''
+    
+    def getTitle(self):
+        return self.title
     
     def getDirector(self):
         return self.director
