@@ -1,4 +1,6 @@
 # from Movie import Movie
+from Streaming_Movie import Streaming_Movie
+from Movie_On_Demand import Movie_On_Demand
 class Client:
     class_counter = 0
     def __init__(self,username,lastname,email,age):
@@ -8,8 +10,12 @@ class Client:
         self.age = age
         self.id = Client.class_counter
         Client.class_counter += 1
+        self.total_tickets = 0
+        self.season_tickets = 0
+        self.cancel_count = 0
+        self.movies_watched = []
     
-    movies_watched = []
+    
     
     def getId(self):
         return self.id
@@ -42,7 +48,11 @@ class Client:
         return self.card_number
     
     def addWatchedMovie(self,movie):
-        self.movies_watched.append(movie)
+        if isinstance(movie,Streaming_Movie) or isinstance(movie,Movie_On_Demand):
+            self.movies_watched.append(movie)
+            
+    def getWatchedMovies(self):
+        return self.watched_movies
     
     def getDiscount(self):
         return self.discount
@@ -51,17 +61,14 @@ class Client:
         self.discount = discount
 
     def retriveWatchedMovies(self):
-        streaming_movies_watched = []
-        movies_on_demand_watched = []
+        watched = {'Streaming_Movies':[],'Movies_On_Demand':[]}
         if len(self.getWatchedMovies())>0:
             for movie in self.getWatchedMovies():
                 if isinstance(movie,Streaming_Movie):
-                    streaming_movies_watched.append(movie)
+                    watched['Streaming_Movies'].append(movie.getTitle())
                 elif isinstance(movie,Movie_On_Demand):
-                    movies_on_demand_watched.append(movie)   
-            return streaming_movies_watched,movies_on_demand_watched
-        else:
-            return False
+                    watched["Movies_On_Demand"].append(movie.getTitle()) 
+        return watched
     
     def checkStreamingCriteria(self):
         if self.getCancelCount()<5 and self.getSeasonTickets()>10:
