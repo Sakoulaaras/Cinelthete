@@ -30,6 +30,15 @@ client2 = Client('Vaggelis','Petrakis','vpetrakis@ceid.upatras.gr',24)
 client3 = Client('Petros','Eleutheriadis','peleutheriadis@ceid.upatras.gr',24)
 client4 = Client('Antonis','Karvounis','akarvounis@ceid.upatras.gr',24)
 
-
+classic1 = Classic_Movie('GoodFellas','Martin Scorsese','Gangster',['Robert DeNiro','Joe Pesci','Liotta'],1980)
+classic2 = Classic_Movie('The Godfather','Francis Ford Coppola','Crime',['Marlon Brando','Al Pacino'],1976)
+classic3 = Classic_Movie('Taxi Driver','Martin Scorsese','Drama',['Robert DeNiro','Jodie Foster','Harvey Keitel'],1976)
+classic4 = Classic_Movie('2001: A Space Odyssey','Stanley Kubrick','Sci-Fi',['Richard Strauss','Gyorgi Ligeti'],1968)
+classic5 = Classic_Movie('The Shining','Stanley Kubrick','Horror',['Jack Nicholson','Shelley Duvall'],1980)
+classic6 = Classic_Movie('Citizen Kane','Orson Welles','Drama',['Orson Welles','Ruth Warrick'],1941)
+classic7 = Classic_Movie('Vertigo','Alfred Hitchock','',['Kim Novak','James Stewart'],1958)
+classic8 = Classic_Movie('Raging Bull','Martin Scorsese','Drama',['Robert DeNiro','Joe Pesci'],1980)
+classic9 = Classic_Movie('Psycho','Alfred Hitchock','Horror',['Anthony Perkins','Janet Leigh'],1960)
+classic10 = Classic_Movie("Schindler's List",'Steven Spielberg','War',['Liam Neeson','Ralph Fiennes','Ben Kingsley'],1993)
 
 
