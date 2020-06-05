@@ -42,3 +42,13 @@ classic9 = Classic_Movie('Psycho','Alfred Hitchock','Horror',['Anthony Perkins',
 classic10 = Classic_Movie("Schindler's List",'Steven Spielberg','War',['Liam Neeson','Ralph Fiennes','Ben Kingsley'],1993)
 
 
+cinema1 = Cinema('Athina',20)
+cinema2 = Cinema('Thesaloniki',15)
+cinema3 = Cinema('Volos',10)
+cinema4 = Cinema('Xalkida',2)
+cinema5 = Cinema('Larisa',10)
+cinema6 = Cinema('Kifisia',15)
+cinema7 = Cinema('Pireas',10)
+cinema8 = Cinema('Xania',5)
+cinema9 = Cinema('Ioannina',8)
+cinema10 = Cinema('Alexandroupoli',3)
