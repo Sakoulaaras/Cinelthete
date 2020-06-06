@@ -6,6 +6,9 @@ class Ratings:
     def __init__(self):
         self.ratings_log = {}
     
+    def getRatingsLog(self):
+        return self.ratings_log
+    
     def validateRatingAndCritique(self,rating,critique):
         if rating<0 or rating >10:
             return False
