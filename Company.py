@@ -18,10 +18,13 @@ class Company:
     def getCinemas(self):
         return self.cinemas
     
+    def getSimilarFoundMovies(self):
+        return self.similar_found_movies
+
     def addCinema(self,cinema):
         self.cinemas.append(cinema)
 
-    def updateEarnigns(self,id,amount):
+    def updateEarnings(self,id,amount):
         for cinema in self.getCinemas():
             if cinema.getId() == id:
                 cinema.updateEarnings(amount)
@@ -32,7 +35,7 @@ class Company:
                 cinema.updateTickets(tickets)
     
     def findMovies(self,director,genre,starring):
-        self.similar_found_movies = []
+#         self.similar_found_movies = []
         counter = 0
         for movie in self.getPastMovies():
             if movie.checkMovie(director,genre,starring):
@@ -50,35 +53,41 @@ class Company:
         return self.past_movies
 
     def estimateMovieTickets(self,movie):
-        sum = 0
+        sum_tickets = 0
         sums_for_std = []
         if self.findMovies(movie.getDirector(),movie.getGenre(),movie.getStarring()):
-            for movie in self.similar_found_movies:
-                sum += movie.getTickets()
-                sums_for_std.append(sum)
-            mean = sum/len(self.similar_found_movies)
-            std = stdev(sums_for_std)
-            return [mean,std]
+            for movie in self.getSimilarFoundMovies():
+                sum_tickets += movie.getTickets()
+                sums_for_std.append(sum_tickets)
+            mean = sum_tickets/len(self.getSimilarFoundMovies())
+            if len(sums_for_std)>1:
+                std = stdev(sums_for_std)
+                return [mean,std]
+            else:
+                return mean
         else:
             return 'Not enough past similar movies to make prediction'
 
     def estimateMovieEarnings(self,movie):
-        sum = 0
+        sum_earnings = 0
         sums_for_std = []
         if self.findMovies(movie.getDirector(),movie.getGenre(),movie.getStarring()):
             for movie in self.similar_found_movies:
-                sum += movie.getEarnings()
+                sum_earnings += movie.getEarnings()
                 sums_for_std.append(sum)
-            mean = sum/len(self.similar_found_movies)
-            std = stdev(sums_for_std)
-            return [mean,std]
+            mean = sum_earnings/len(self.getSimilarFoundMovies())
+            if len(sums_for_std)>1:
+                std = stdev(sums_for_std)
+                return [mean,std]
+            else:
+                return mean
         else:
             return 'Not enough past similas movies to make prediction'
 
-    def retrieveCinemasForForecast(self):
+    def retrieveCinemasForForecast(self,forecast):
         found_cinemas = []
         for cinema in self.getCinemas():
-            if cinema.getForecastAvailability()==True:
+            if cinema.getForecastAvailability(forecast)==True:
                 found_cinemas.append(cinema)
         if len(found_cinemas)>0:
             return found_cinemas
