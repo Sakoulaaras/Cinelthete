@@ -13,7 +13,7 @@ import helper
 class Omades:
     def __init__(self):
         self.best_streaming = []
-        self.best_on_demand = {} # {'Classics':[],'Mainstream':[]}
+        self.best_on_demand = {'Classics':[],'Mainstream':[]} # {'Classics':[],'Mainstream':[]}
         self.streaming_movies = [] # oles oses exoun paixtei
         self.classic_movies = [] # oles oses exoun paixtei
         self.mainstream_movies = [] # oles oses exoun paixtei
@@ -87,11 +87,11 @@ class Omades:
     
     # gia tis on demand
     def retrieveBestMovies(self):
-        best_movies = {}
+        best_movies = {'Classics':[],'Mainstream':[]}
         for classic in self.best_on_demand['Classics']:
-            best_movies['Classics'].append(classic)
+            best_movies['Classics'].append(classic.getTitle())
         for mainstream in self.best_on_demand['Mainstream']:
-            best_movies['Mainstream'].append(mainstream)
+            best_movies['Mainstream'].append(mainstream.getTitle())
         return best_movies
     
     # gia logous aplotitas tha theorisoume klasikes tis tainies me xronologia prin to 2000   
@@ -141,7 +141,7 @@ class Omades:
     def retrieveBestClassics(self):
         best_classics = []
         for classic in self.best_on_demand['Classics']:
-            best_classics.append(classic)
+            best_classics.append(classic.getTitle())
         return best_classics
     
     # kaleitai kathe fora pou erxetai ena neo stream
