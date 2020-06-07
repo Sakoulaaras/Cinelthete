@@ -125,6 +125,18 @@ cinema6.setPeakHours(8,78)
 cinema1.getScreeningHalls()[0].reserveSeats([[1,1],[1,2],[1,3]])
 print(f'Gia na doume oti i thesi ontws kratithike : {cinema1.getScreeningHalls()[0].getSeats()[1].getTaken()}')
 
+company.addPastMovie(movie1) # na valw pros=igoumenes tainies gia na ginei provlepsi
+company.addPastMovie(movie2)
+company.addPastMovie(movie3)
+company.addPastMovie(movie4)
+company.addPastMovie(movie5)
+company.addPastMovie(movie6)
+print(company.getPastMovies()[5].getTitle())
+print(f'Anamenomena esoda upcoming_movie1(Killers of the flower moon) : {company.estimateMovieTickets(upcoming_movie1)}') #  na dwsw mia pou na exei koinouw prwtaginistes kai eidos
+print(f'Anamenomena eisitiria upcoming_movie1(killers of the flower moon): {company.estimateMovieEarnings(upcoming_movie1)}') # i skinotheti mono idio klp
+print(f'Anamenomena esoda upcoming_movie2 (Avatar 2){company.estimateMovieEarnings(upcoming_movie2)}')
+print(f'Anamemonema eisitiria upcoming_movie2(avatar 2): {company.estimateMovieTickets(upcoming_movie2)}')
+
 company.addCinema(cinema1)
 company.addCinema(cinema2)
 company.addCinema(cinema3)
