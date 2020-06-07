@@ -199,3 +199,11 @@ omades.addMainstream(mainstream1)
 omades.addMainstream(mainstream2)
 omades.addMainstream(mainstream3)
 print(f'Oi kalitera on demand movies taksinomimenes : {omades.retrieveBestMovies()}')
+
+      
+priority_queue = Priority_Queue()
+priority_queue.insertToPriorityQueue(client1)
+priority_queue.insertToPriorityQueue(client2)
+print(f'Pelates se oura anamonis: {priority_queue.getOnHold()}')
+# estw thelei kratisi gia tainia stis 22:30
+print(f'Xronos pou apomenei mexri tin dinatotita kratisis: {priority_queue.calculateReservationTime(22,30,00)}')
