@@ -74,7 +74,9 @@ class Client:
                     watched['Streaming_Movies'].append(movie.getTitle())
                 elif isinstance(movie,Movie_On_Demand):
                     watched["Movies_On_Demand"].append(movie.getTitle()) 
-        return watched
+            return watched
+        else:
+            return False
     
     def checkStreamingCriteria(self):
         if self.getCancelCount()<5 and self.getSeasonTickets()>10:
