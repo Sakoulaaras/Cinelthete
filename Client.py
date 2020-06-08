@@ -59,6 +59,12 @@ class Client:
 
     def setDiscount(self,discount):
         self.discount = discount
+        
+    def getTotalTickets(self):
+        return self.total_tickets
+
+    def setTotalTickets(self,total_tickets):
+        self.total_tickets = total_tickets
 
     def retriveWatchedMovies(self):
         watched = {'Streaming_Movies':[],'Movies_On_Demand':[]}
