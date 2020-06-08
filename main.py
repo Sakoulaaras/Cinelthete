@@ -159,6 +159,30 @@ cinema4.updateTickets(254)
 print(f'Eisitiria gia kathe cinema kai athroistika: {company.retrieveCinemasTickets()}')
 print(f'Esoda gia kathe cinema kai athroistika: {company.retrieveCinemasEarnings()}')
 
+client1.addWatchedMovie(classic1)
+client1.addWatchedMovie(classic2)
+client1.addWatchedMovie(classic3)
+client1.addWatchedMovie(classic4)
+
+client2.addWatchedMovie(streaming1)
+client2.addWatchedMovie(streaming5)
+client2.addWatchedMovie(classic2)
+
+client1.setCancelCount(4)
+client1.setSeasonTickets(12)
+client1.setTotalTickets(35)
+client2.setCancelCount(6)
+client2.setSeasonTickets(12)
+client2.setTotalTickets(31)
+
+print(f'Tainies pou exei dei o client1: {client1.retrieveWatchedMovies()}')
+print(f'Tainies pou exei dei o client2: {client2.retrieveWatchedMovies()}')
+
+print(f'Elegxos Streaming criteria gia ton client1: {client1.checkStreamingCriteria()}')
+print(f'Elegxos On Demand criteria gia ton client1: {client1.checkOnDemandCriteria()}')
+print(f'Elegxos Streaming gia ton client2: {client2.checkStreamingCriteria()}')
+print(f'Elegxos On Demand criteria gia ton client2: {client2.checkOnDemandCriteria()}')
+
 ratings = Ratings()
 ratings.addClientToLog(client1)
 ratings.addClientToLog(client2)
