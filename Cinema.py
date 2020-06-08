@@ -48,14 +48,17 @@ class Cinema:
         else:
             return False
 
+    def getPeakHours(self):
+        return self.peak_hour
+    
     def getMaxForecast(self):
         return self.max_forecast
 
     def retrieveTickets(self):
-        pass
+        return self.total_tickets
 
     def retrieveEarnings(self):
-        pass
+        return self.total_earnings
 
     def retrieveAvailableScreeningHalls(self):
         available_screening_halls = []

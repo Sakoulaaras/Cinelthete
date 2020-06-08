@@ -2,6 +2,9 @@ class Credit_Card:
     def __init__(self,number,balance):
         self.number = number
         self.balance = balance
+        
+    def getNumber(self):
+        return self.number
 
     def setBalance(self,balance):
         self.balance = balance

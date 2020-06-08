@@ -59,6 +59,12 @@ class Client:
 
     def setDiscount(self,discount):
         self.discount = discount
+        
+    def getTotalTickets(self):
+        return self.total_tickets
+
+    def setTotalTickets(self,total_tickets):
+        self.total_tickets = total_tickets
 
     def retriveWatchedMovies(self):
         watched = {'Streaming_Movies':[],'Movies_On_Demand':[]}
@@ -68,7 +74,9 @@ class Client:
                     watched['Streaming_Movies'].append(movie.getTitle())
                 elif isinstance(movie,Movie_On_Demand):
                     watched["Movies_On_Demand"].append(movie.getTitle()) 
-        return watched
+            return watched
+        else:
+            return False
     
     def checkStreamingCriteria(self):
         if self.getCancelCount()<5 and self.getSeasonTickets()>10:
