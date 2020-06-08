@@ -3,6 +3,9 @@ from Client import Client
 class Priority_Queue:
     def __init__(self):
         self.on_hold = []
+    
+    def getOnHold(self):
+        return self.on_hold
 
     def insertToPriorityQueue(self,client):
         self.on_hold.append(client)
