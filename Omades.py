@@ -122,7 +122,7 @@ class Omades:
                 recommended_classics.append(title[0:title.find('(')-1])
         return recommended_classics # exei titles twn klasikwn
     
-    def retrieveRecommendedGenres(self):
+    def retrieveRecommendedGenres(self,user_id):
         recommended_genres = []
         classics_by_genre = []
         movies = pd.read_csv('movies.csv')
