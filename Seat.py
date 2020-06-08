@@ -10,6 +10,9 @@ class Seat:
     def getColumn(self):
         return self.column
     
+    def getTaken(self):
+        return self.taken
+    
     def setTaken(self,piasmeni):
         self.taken = piasmeni
     
