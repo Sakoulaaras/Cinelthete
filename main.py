@@ -157,6 +157,8 @@ cinema6.setPeakHours(6,70)
 cinema6.setPeakHours(7,45)
 cinema6.setPeakHours(8,78)
 
+print(f'Aithouses tou cinema1 me diathesimes 10 theseis: {cinema1.chechAvailableScreeningHalls(10)}')
+print(f'Theseis tis prwtis aithousas me 10 diathesimes theseis tou cimema 1:{cinema1.chechAvailableScreeningHalls(10)[0].getSeats()}')
 cinema1.getScreeningHalls()[0].reserveSeats([[1,1],[1,2],[1,3]])
 print(f'Gia na doume oti i thesi ontws kratithike : {cinema1.getScreeningHalls()[0].getSeats()[1].getTaken()}')
 
