@@ -9,7 +9,7 @@ class Ticket:
         self.price = 0
 
     def getTicketType(self):
-        return self.type 
+        return self.tipos 
     
     def setTicketType(self,tipos):
         self.tipos = tipos
