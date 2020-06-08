@@ -247,6 +247,11 @@ omades.addMainstream(mainstream2)
 omades.addMainstream(mainstream3)
 print(f'Oi kalitera on demand movies taksinomimenes : {omades.retrieveBestMovies()}')
 
+# i stili group periexei to cluster sto opoio anikei o kathe xristis-allazei me diaforetikes ekteleseis tou algorithmou
+omades.Clustering() 
+omades.retrieveRecommendedMovies(8,667) # cluster 8 gia ton user 667
+omades.retrieveRecommendedClassics(1,4) # cluster 4 gia user 1
+omades.retrieveRecommendedGenres(1) # ta genres pou protima o user 1
       
 priority_queue = Priority_Queue()
 priority_queue.insertToPriorityQueue(client1)
