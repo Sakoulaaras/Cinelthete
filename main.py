@@ -30,6 +30,29 @@ client2 = Client('Vaggelis','Petrakis','vpetrakis@ceid.upatras.gr',24)
 client3 = Client('Petros','Eleutheriadis','peleutheriadis@ceid.upatras.gr',24)
 client4 = Client('Antonis','Karvounis','akarvounis@ceid.upatras.gr',24)
 
+credit_card_1 = Credit_Card(1234567890,500)
+credit_card_2 = Credit_Card(1098765432,100)
+
+ticket1 = Ticket('Kanoniko')
+ticket2 = Ticket('Foititiko')
+
+client1.setDiscount(True)
+client2.setDiscount(False)
+ticket1.calculatePrice(client1)
+ticket2.calculatePrice(client2)
+print(f'Timi eisitiriou gia ton client1: {ticket1.getTicketPrice()} eurw')
+print(f'Timi eisitiriou gia ton client2: {ticket2.getTicketPrice()} eurw')
+
+print(f'exw 200<500 ara perimenw true kai exw : {credit_card_1.checkBalance(200)}')
+
+client1.setCardNumber(credit_card_1.getNumber())
+client2.setCardNumber(credit_card_1.getNumber())
+
+credit_card_1.makeTransaction(ticket1.getTicketPrice())
+credit_card_2.makeTransaction(ticket2.getTicketPrice())
+print(f'To neo ipoloipo tis kartas1 meta tin sinalagi einai {credit_card_1.getBalance()}')
+print(f'To neo ipoloipo tiw kartas2 meta tin sinalagi einai {credit_card_2.getBalance()}')
+
 classic1 = Classic_Movie('GoodFellas','Martin Scorsese','Gangster',['Robert DeNiro','Joe Pesci','Liotta'],1980)
 classic2 = Classic_Movie('The Godfather','Francis Ford Coppola','Crime',['Marlon Brando','Al Pacino'],1976)
 classic3 = Classic_Movie('Taxi Driver','Martin Scorsese','Drama',['Robert DeNiro','Jodie Foster','Harvey Keitel'],1976)
@@ -177,6 +200,9 @@ cinema2.setMaxForecast(21)
 cinema3.setMaxForecast(17)
 print(f'Cinemas me dinatotia provlepsis 21 imerwn : {company.retrieveCinemasForForecast(21)}')
 print(company.calculateMaxForecast())
+
+print(f'Emfanizei tis kampiles kai ta dedomena provlepsis: {company.seperateTimeSeriesForecasting()}')
+print(f'Emfanizei tin athroistiki kampili kai ta athroistika dedomena: {company.cumulativeTimeSeriesForecasting()}')
 
 client1.addWatchedMovie(classic1)
 client1.addWatchedMovie(classic2)
