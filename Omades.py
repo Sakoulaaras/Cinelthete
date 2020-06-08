@@ -95,7 +95,7 @@ class Omades:
         return best_movies
     
     # gia logous aplotitas tha theorisoume klasikes tis tainies me xronologia prin to 2000   
-    def retrieveRecommendedClassicss(self):
+    def retrieveRecommendedClassics(self):
         recommended_classics = []
         clustered = self.Clustering()
         cluster_number = cluster_id
